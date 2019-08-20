@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="FED_css.css">
+    <title></title>
+</head>
+
+<body>
+    <header>FED "To-do"</header>
+    <div class="main">
+        <div class="nav-bar">
+            <ul class="menu">
+                <li><a onclick=showTab("todo")>To Do</a></li>
+                <li><a onclick=showTab("user")>User</a></li>
+                <li><a onclick=showTab("department")>Department</a></li>
+                <li><a onclick=showTab("about")>About</a></li>
+            </ul>
+        </div>
+        
+        <div class="content-tab">
+            <div id="tab-todo" >
+                <input type="text" name="searchbox" onfocus=showSuggestions() onblur=hideSuggestions() onkeyup=createAutoCompleteList() ><button type="button">Search</button><button type="button">Add</button>
+                <div class="autocomplete" >
+                 <ul id="autocomplete-list">
+                  </ul>
+                </div>
+                <table>
+                    <tr>
+                        <th>Task1</th>
+                        <td>Task1 details</td>      
+                    </tr>
+                    <tr>
+                        <th>Task2</th>
+                        <td>Task2 details</td>
+                    </tr>
+                    <tr>
+                        <th>Task3</th>
+                        <td>Task3 details</td>      
+                    </tr>
+                    <tr>
+                        <th>Task4</th>
+                        <td>Task4 details</td>
+                    </tr>
+                </table>
+            </div>
+            <div id="tab-user" ><h1>User Tab</h1></div>
+            <div id="tab-department"><h1>Department Tab</h1></div>
+            <div id="tab-about"><h1>About Tab</h1></div>
+        </div>
+    </div>
+
+</body>
+<footer>@Suraj Verma</footer>
+</html>
+
+<script src="FED_javascript.js"></script>
