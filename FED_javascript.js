@@ -44,12 +44,57 @@ function createAutoCompleteList() {
     }
 }
 
-    function clearAutoCompleteList() {
-        var element = document.getElementById("autocomplete-list");
+function clearAutoCompleteList() {
+     var element = document.getElementById("autocomplete-list");
         while (element.lastElementChild != null) {
             element.removeChild(element.lastElementChild);
         }
-        /*for (let i = 0; i < element.childElementCount; i++) {
-          
-        }*/
    }
+
+function addToList() {
+
+    let textKey = document.getElementsByName("searchbox")[0].value;
+    todoList.push(textKey);
+    addToTable(textKey);
+}
+
+function fillTodoTable() {
+
+    for (let i = 0; i < todoList.length; i++) {
+        let rowItem = document.createElement("tr");
+
+        let rowdataItemTaskName = document.createElement("td");
+        let TaskName = document.createTextNode(todoList[i]);
+        rowdataItemTaskName.appendChild(TaskName);
+
+        let rowdataItemTaskDetails = document.createElement("td");
+        let TaskDetails = document.createTextNode("Task Details are here.");
+        rowdataItemTaskDetails.appendChild(TaskDetails);
+
+        rowItem.appendChild(rowdataItemTaskName);
+        rowItem.appendChild(rowdataItemTaskDetails);
+
+        let element = document.getElementById("todo-table");
+        element.appendChild(rowItem);
+    }
+}
+
+function addToTable(textKey) {
+    let rowItem = document.createElement("tr");
+
+    let rowdataItemTaskName = document.createElement("td");
+    let TaskName = document.createTextNode(textKey);
+    rowdataItemTaskName.appendChild(TaskName);
+
+    let rowdataItemTaskDetails = document.createElement("td");
+    let TaskDetails = document.createTextNode("Task Details are here.");
+    rowdataItemTaskDetails.appendChild(TaskDetails);
+
+    rowItem.appendChild(rowdataItemTaskName);
+    rowItem.appendChild(rowdataItemTaskDetails);
+
+    let element = document.getElementById("todo-table");
+    element.appendChild(rowItem);
+}
+
+fillTodoTable();
