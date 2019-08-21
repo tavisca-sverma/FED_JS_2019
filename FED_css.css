@@ -1,4 +1,4 @@
-﻿header {
+header {
     background-color: lightblue;
     text-align:center;
     height:50px;
@@ -68,7 +68,7 @@ table, th, td {
 #tab-todo {
     width:100%;
     margin-left: 5%;
-    display:none;
+    display:block;
 }
 #tab-user{
     display:none;
