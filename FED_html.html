@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="FED_css.css">
@@ -19,27 +19,17 @@
         
         <div class="content-tab">
             <div id="tab-todo" >
-                <input type="text" name="searchbox" onfocus=showSuggestions() onblur=hideSuggestions() onkeyup=createAutoCompleteList() ><button type="button">Search</button><button type="button">Add</button>
+                <input type="text" name="searchbox" onfocus=showSuggestions() onblur=hideSuggestions() onkeyup=createAutoCompleteList() ><button type="button">Search</button><button type="button" onclick=addToList()>Add</button>
+                
                 <div class="autocomplete" >
                  <ul id="autocomplete-list">
                   </ul>
                 </div>
-                <table>
+
+                <table id="todo-table" >
                     <tr>
-                        <th>Task1</th>
-                        <td>Task1 details</td>      
-                    </tr>
-                    <tr>
-                        <th>Task2</th>
-                        <td>Task2 details</td>
-                    </tr>
-                    <tr>
-                        <th>Task3</th>
-                        <td>Task3 details</td>      
-                    </tr>
-                    <tr>
-                        <th>Task4</th>
-                        <td>Task4 details</td>
+                        <th>Task</th>
+                        <th>Task details</th>      
                     </tr>
                 </table>
             </div>
