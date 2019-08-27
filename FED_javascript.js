@@ -32,6 +32,8 @@ function createAutoCompleteList() {
     }
       
     for (let i = 0; i < todoList.length; i++) {
+        if (todoList[i] == undefined)
+            continue;
         if (todoList[i].startsWith(searchKey)) {
 
             var listItem = document.createElement("li");
@@ -54,47 +56,108 @@ function clearAutoCompleteList() {
 function addToList() {
 
     let textKey = document.getElementsByName("searchbox")[0].value;
+    if(textKey=="")
+    return;
     todoList.push(textKey);
     addToTable(textKey);
 }
 
 function fillTodoTable() {
+    let element = document.getElementById("todo-table");
+    let tableRow = document.createElement("tr");
+    tableRow.innerHTML = "<th>Task</th>";
+
+    element.appendChild(tableRow);
 
     for (let i = 0; i < todoList.length; i++) {
-        let rowItem = document.createElement("tr");
+        if (todoList[i] == undefined)
+            continue;
+        let tableRowItem = document.createElement("tr");
 
-        let rowdataItemTaskName = document.createElement("td");
-        let TaskName = document.createTextNode(todoList[i]);
-        rowdataItemTaskName.appendChild(TaskName);
+        let tableRowDataTask = document.createElement("td");
+        tableRowDataTask.innerHTML = "" + todoList[i] + "";
+     
 
-        let rowdataItemTaskDetails = document.createElement("td");
-        let TaskDetails = document.createTextNode("Task Details are here.");
-        rowdataItemTaskDetails.appendChild(TaskDetails);
+        let tableRowDataEdit = document.createElement("td");
+        tableRowDataEdit.innerHTML = "<button id=\"edit-button\"  type=\"button\" onclick=editTask("+i+") > Edit </button> ";
 
-        rowItem.appendChild(rowdataItemTaskName);
-        rowItem.appendChild(rowdataItemTaskDetails);
+       
+        let tableRowDataDelete = document.createElement("td");
+        tableRowDataDelete.innerHTML = "<button id=\"delete-button\" type=\"button\" onclick=deleteTask("+i+") > Delete </button>";
 
-        let element = document.getElementById("todo-table");
-        element.appendChild(rowItem);
+        tableRowItem.appendChild(tableRowDataTask);
+        tableRowItem.appendChild(tableRowDataEdit);
+        tableRowItem.appendChild(tableRowDataDelete);
+
+    
+        element.appendChild(tableRowItem);
+
+        
     }
 }
 
 function addToTable(textKey) {
-    let rowItem = document.createElement("tr");
+    let tableRowItem = document.createElement("tr");
 
-    let rowdataItemTaskName = document.createElement("td");
-    let TaskName = document.createTextNode(textKey);
-    rowdataItemTaskName.appendChild(TaskName);
+    let tableRowDataTask = document.createElement("td");
+    tableRowDataTask.innerHTML = "" + textKey + "";
+    let len = todoList.length - 1;
 
-    let rowdataItemTaskDetails = document.createElement("td");
-    let TaskDetails = document.createTextNode("Task Details are here.");
-    rowdataItemTaskDetails.appendChild(TaskDetails);
+    let tableRowDataEdit = document.createElement("td");
+    tableRowDataEdit.innerHTML = "<button id=\"edit-button\"  type=\"button\" onclick=editTask("+len+")> Edit </button> ";
+   
+    let tableRowDataDelete = document.createElement("td");
+    tableRowDataDelete.innerHTML = "<button id=\"delete-button\" type=\"button\" onclick=deleteTask("+len+") > Delete </button>";
 
-    rowItem.appendChild(rowdataItemTaskName);
-    rowItem.appendChild(rowdataItemTaskDetails);
+    tableRowItem.appendChild(tableRowDataTask);
+    tableRowItem.appendChild(tableRowDataEdit);
+    tableRowItem.appendChild(tableRowDataDelete);
 
     let element = document.getElementById("todo-table");
-    element.appendChild(rowItem);
+    element.appendChild(tableRowItem);
 }
 
+function editTask(Key) {
+    let element = document.getElementById("todo-table");
+
+    let indexInTable = findIndexInTable(Key);
+    element.children[indexInTable+1].firstElementChild.contentEditable = "true";
+
+    element.children[indexInTable+1].firstElementChild.focus();
+
+    element.children[indexInTable+1].children[1].innerHTML = "<button id=\"save-button\"  type=\"button\" onclick=updateTask(" + indexInTable + ","+Key+")> Save </button> ";
+}
+
+function deleteTask(Key) {
+
+    delete todoList[Key];
+    clearTodoTable();
+    fillTodoTable();
+}
+
+function updateTask(indexInTable,Key) {
+    let element = document.getElementById("todo-table");
+    let textKey = element.children[indexInTable+1].firstElementChild.textContent;
+    todoList[Key] = textKey;
+    clearTodoTable();
+    fillTodoTable();
+}
+
+function clearTodoTable() {
+
+    let element = document.getElementById("todo-table");
+    while (element.lastElementChild != null) {
+        element.removeChild(element.lastElementChild);
+    }
+}
+
+function findIndexInTable(Key) {
+    let index = 0;
+    for (let i = 0; i < Key; i++) {
+        if (todoList[i] == undefined)
+            continue;
+        index++;
+    }
+    return index;
+}
 fillTodoTable();
