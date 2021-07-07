@@ -1,0 +1,103 @@
+header {
+    background-color: lightblue;
+    text-align:center;
+    height:50px;
+    font-size:25px;
+
+}
+footer {
+    background-color: lightblue;
+    text-align: center;
+    height: 50px;
+    font-size: 25px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.main{
+    height:100%;
+    width:100%;
+}
+.nav-bar{
+    display:flex;
+    height:100%;
+    width:25%;
+    float:left;
+}
+.content-tab {
+    padding-top:1%;
+    display: flex;
+    height: 100%;
+    width: 75%;
+    float: left;
+}
+
+.menu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: lightgreen;
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scrolling if the sidenav has too much content */
+}
+li a {
+    display: block;
+    color:darkslateblue;
+    padding: 8px 16px;
+    text-decoration: none;
+    
+}
+
+    /* Change the link color on hover */
+li a:hover {
+     background-color: #555;
+     color: white;
+    }
+
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#tab-todo {
+    width:100%;
+    margin-left: 5%;
+    display:block;
+}
+#tab-user{
+    display:none;
+}
+#tab-department {
+    display: none;
+}
+#tab-about {
+    display: none;
+}
+table {
+    width: 50%;
+    margin-top: 2%;
+}
+.autocomplete {
+    display:none;
+    position: absolute;
+    background: white;
+    border: solid 1px;
+}
+#autocomplete-list {
+    list-style-type: none;
+    padding: 0;
+    padding-right: 20px;
+}
+#delete-button{
+    
+}
+
+#edit-button{
+
+}
